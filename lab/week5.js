@@ -24,35 +24,35 @@ window.addEventListener('DOMContentLoaded', async function() {
     let locationInput = document.querySelector(`#location`)
     // - Get the user-entered location from the element's value
     let location = locationInput.value
-    // - Check to see if the user entered anything; if so:
+      // - Check to see if the user entered anything; if so:
       if (location.length >0){
-      // - Construct a URL to call the WeatherAPI.com API
+        // - Construct a URL to call the WeatherAPI.com API
         let url = `https://api.weatherapi.com/v1/forecast.json?key=76bc372aa8524d89af111842213004&q=${location}&days=3`
-      // - Fetch the url, wait for a response, store the response in memory
+        // - Fetch the url, wait for a response, store the response in memory
         let response = await fetch(url)
-      // - Ask for the json-formatted data from the response, wait for the data, store it in memory
+        // - Ask for the json-formatted data from the response, wait for the data, store it in memory
         let json = await response.json()
-      // - Write the json-formatted data to the JavaScript console
+        // - Write the json-formatted data to the JavaScript console
         console.log(json)
-      // - Store the interpreted location, current weather conditions, the forecast as three separate variables
+        // - Store the interpreted location, current weather conditions, the forecast as three separate variables
         let locationResult = json.location
         let forecastResult = json.forecast
         let currentResult = json.current
-      // - Continue the recipe yourself!
-      //reference current element
-      let currentElement = document.querySelector(`.current`)
-      //write current location to the current div
-      currentElement.innerHTML = `
-        <div class="text-center space-y-2">
-        <div class="font-bold text-3xl">Current Weather for ${locationResult.name}, ${locationResult.region}</div>
-        <div class="font-bold">
-          <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" class="inline-block">
-          <span class="temperature">${currentResult.temp_f}</span>° 
-          and
-          <span class="conditions">${currentResult.condition.text}</span>
+        // - Continue the recipe yourself!
+        //reference current element
+        let currentElement = document.querySelector(`.current`)
+        //write current location to the current div
+        currentElement.innerHTML = `
+          <div class="text-center space-y-2">
+          <div class="font-bold text-3xl">Current Weather for ${locationResult.name}, ${locationResult.region}</div>
+          <div class="font-bold">
+            <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" class="inline-block">
+            <span class="temperature">${currentResult.temp_f}</span>° 
+            and
+            <span class="conditions">${currentResult.condition.text}</span>
+          </div>
         </div>
-      </div>
-      `
-      }
+        `
+        }
   })
 })
